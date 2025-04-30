@@ -61,10 +61,12 @@ func main() {
 	clientHandler := web.NewWebClientHandler(*createClientUseCase)
 	accountHandler := web.NewWebAccountHandler(*createAccountUseCase)
 	transactionHandler := web.NewWebTransactionHandler(*createTransactionUseCase)
+	balanceHandler := web.NewWebBalanceHandler(*createTransactionUseCase)
 
 	webserver.AddHandler("/clients", clientHandler.CreateClient)
 	webserver.AddHandler("/accounts", accountHandler.CreateAccount)
 	webserver.AddHandler("/transactions", transactionHandler.CreateTransaction)
+	webserver.AddHandler("/balances/{account_id}", transactionHandler.CreateTransaction)
 
 	fmt.Println("Server is running")
 	webserver.Start()
